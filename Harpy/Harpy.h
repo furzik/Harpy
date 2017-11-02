@@ -67,6 +67,7 @@ FOUNDATION_EXPORT NSString * const HarpyLanguageVietnamese;
 - (void)harpyUserDidSkipVersion;        // User did click on button that skips version update
 - (void)harpyUserDidCancel;             // User did click on button that cancels update dialog
 - (void)harpyDidDetectNewVersionWithoutAlert:(NSString *)message; // Harpy performed version check and did not display alert
+- (void)harpyDidNotDetectNewVersion;    // The app is up-to-date
 @end
 
 typedef NS_ENUM(NSUInteger, HarpyAlertType)

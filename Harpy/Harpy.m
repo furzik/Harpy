@@ -102,11 +102,7 @@ NSString * const HarpyLanguageVietnamese            = @"vi";
 #pragma mark - Public
 
 - (void)checkVersion {
-    if (!_presentingViewController) {
-        NSLog(@"[Harpy]: Please make sure that you have set _presentationViewController before calling checkVersion, checkVersionDaily, or checkVersionWeekly.");
-    } else {
-        [self performVersionCheck];
-    }
+    [self performVersionCheck];
 }
 
 - (void)checkVersionDaily {
@@ -218,6 +214,7 @@ NSString * const HarpyLanguageVietnamese            = @"vi";
                         [self appStoreVersionIsNewer:_currentAppStoreVersion];
                     } else {
                         [self printDebugMessage:@"Currently installed version is newer."];
+                        [self appStoreVersionIsNotNewer];
                     }
                 }
             }
@@ -283,6 +280,12 @@ NSString * const HarpyLanguageVietnamese            = @"vi";
         return true;
     } else {
         return false;
+    }
+}
+
+- (void)appStoreVersionIsNotNewer {
+    if ([self.delegate respondsToSelector:@selector(harpyDidNotDetectNewVersion)]){
+        [self.delegate harpyDidNotDetectNewVersion];
     }
 }
 
